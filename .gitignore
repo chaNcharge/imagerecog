@@ -1,3 +1,4 @@
 *.pth
 data/
 .vscode/
+.DS_Store
