@@ -1,0 +1,9 @@
+#!/bin/bash
+#SBATCH --partition=compute ### which partition to run on, can use compute for multicore
+#SBATCH --job-name=echa-job ### name of your job, can be whatever
+#SBATCH --time=00:20:00 ### estimated time, hh:mm:ss (if you go over, slurm will kill it)
+#SBATCH --nodes=1 ### number of nodes you request (for now, just 1)
+#SBATCH --ntasks-per-node=1 ### number of processes to launch
+#SBATCH --cpus-per-task=10 ### number of threads to launch (for multicore)
+#SBATCH --account=cs399 ### PIRG to charge time to, use this one
+python3 imagerecogtrain.py $SLURM_JOB_GPUS

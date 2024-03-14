@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH --partition=gpu ### which partition to run on, can use compute for multicore
+#SBATCH --job-name=cifar-test ### name of your job, can be whatever
+#SBATCH --time=00:05:00 ### estimated time, hh:mm:ss (if you go over, slurm will kill it)
+#SBATCH --nodes=1 ### number of nodes you request (for now, just 1)
+#SBATCH --ntasks-per-node=1 ### number of processes to launch
+#SBATCH --gpus=1 ### number of GPUs to reserve (for now, just 1)
+#SBATCH --cpus-per-task=10 ### number of threads to launch (for multicore)
+#SBATCH --account=cs399 ### PIRG to charge time to, use this one
+python3 imagerecogtest.py
