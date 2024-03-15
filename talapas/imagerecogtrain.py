@@ -1,3 +1,4 @@
+from sched import scheduler
 from time import time
 import torch
 import torchvision
@@ -84,7 +85,7 @@ if __name__ == "__main__":
                           momentum=0.9, weight_decay=1e-4)  # Add weight decay
 
     # Learning rate scheduler
-    a = optim.lr_scheduler.StepLR(
+    scheduler = optim.lr_scheduler.StepLR(
         optimizer, step_size=30, gamma=0.1)  # Step-wise LR decay
 
     # Train the network
