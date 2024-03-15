@@ -108,6 +108,7 @@ if __name__ == "__main__":
     net.to(device)
     correct = 0
     total = 0
+    start_time = time()
     with torch.no_grad():
         for data in testloader:
             images, labels = data[0].to(device), data[1].to(device)
@@ -115,5 +116,8 @@ if __name__ == "__main__":
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
+    end_time = time()
+    duration = end_time - start_time
 
+    print(f'Testing 10000 images completed in {duration: .2f} seconds')
     print(f'Accuracy of the network on the 10000 test images: {100 * correct // total} %')
