@@ -1,27 +1,8 @@
 import torch
-import torch.nn as nn
+import sys
 import torchvision.transforms as transforms
 from PIL import Image
-
-# Redefine same neural network model from the training script
-class Net(nn.Module):
-    def __init__(self):
-        super(Net, self).__init__()
-        self.conv1 = nn.Conv2d(3, 20, 5)
-        self.pool = nn.MaxPool2d(2, 2)
-        self.conv2 = nn.Conv2d(20, 16, 5)
-        self.fc1 = nn.Linear(16 * 5 * 5, 120)
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)
-
-    def forward(self, x):
-        x = self.pool(nn.functional.relu(self.conv1(x)))
-        x = self.pool(nn.functional.relu(self.conv2(x)))
-        x = x.view(-1, 16 * 5 * 5)
-        x = nn.functional.relu(self.fc1(x))
-        x = nn.functional.relu(self.fc2(x))
-        x = self.fc3(x)
-        return x
+from imagerecogtrain import Net
 
 # Define the transform for the input image
 transform = transforms.Compose([
@@ -55,13 +36,13 @@ def predict_image(image_path, model, transform_fxn):
         _, predicted = torch.max(outputs, 1)
     
     # Get the predicted class label
-    class_index = predicted.item()
-    class_name = classes[class_index] # type: ignore
+    class_index = int(predicted.item())
+    class_name = classes[class_index]
     return class_name
 
 if __name__ == "__main__":
     # Path to the input image
-    image_path = './image.jpg'  # Change this to the path of your image
+    image_path = sys.argv[1]  # Change this to the path of your image
 
     # Predict the class of the input image
     predicted_class = predict_image(image_path, model, transform)
