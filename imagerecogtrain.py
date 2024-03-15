@@ -133,5 +133,4 @@ if __name__ == "__main__":
     duration = end_time - start_time
 
     print(f'Testing 10000 images completed in {duration: .2f} seconds')
-    print(f'Accuracy of the network on the 10000 test images: {
-          100 * correct // total} %')
+    print(f'Accuracy of the network on the 10000 test images: {100 * correct // total} %')
