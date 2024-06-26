@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
     # Train the network
     start_time = time()
-    for epoch in range(50):  # Increase number of epochs
+    for epoch in range(20):  # Increase number of epochs
         net.train()  # Set the model to training mode
 
         running_loss = 0.0
